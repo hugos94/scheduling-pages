@@ -3,9 +3,9 @@
 
 import sys
 from file_manager import *
-from fcfs import *
-from sjf import *
-from rr import *
+from fifo import *
+from otm import *
+from lru import *
 
 def main():
 
@@ -21,14 +21,14 @@ def main():
 
         frame_size = inputs.pop(0) # Captura o tamanho do frame informado no arquivo
 
-        fifo = FIFO(frame_size) # Inicializa o algoritmo FIFO
-        fifo.execute(inputs) # Executa o algoritmo FIFO
-        #
-        # otm = OTM() # Inicializa o algoritmo SSTF
-        # otm.execute(inputs) # Executa o algoritmo SSTF
-        #
-        # lru = LRU() # Inicializa o algoritmo Elevador
-        # lru.execute(inputs) # Executa o algoritmo Elevador
+        fifo = FIFO() # Inicializa o algoritmo FIFO
+        fifo.execute(frame_size, inputs) # Executa o algoritmo FIFO
+
+        otm = OTM(frame_size) # Inicializa o algoritmo OTM
+        otm.execute(inputs) # Executa o algoritmo OTM
+
+        lru = LRU() # Inicializa o algoritmo LRU
+        lru.execute(frame_size, inputs) # Executa o algoritmo LRU
 
 
 if __name__ == '__main__':
