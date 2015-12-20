@@ -24,8 +24,8 @@ def main():
         fifo = FIFO() # Inicializa o algoritmo FIFO
         fifo.execute(frame_size, inputs) # Executa o algoritmo FIFO
 
-        otm = OTM(frame_size) # Inicializa o algoritmo OTM
-        otm.execute(inputs) # Executa o algoritmo OTM
+        otm = OTM() # Inicializa o algoritmo OTM
+        otm.execute(frame_size, inputs) # Executa o algoritmo OTM
 
         lru = LRU() # Inicializa o algoritmo LRU
         lru.execute(frame_size, inputs) # Executa o algoritmo LRU

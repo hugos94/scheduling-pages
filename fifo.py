@@ -22,4 +22,4 @@ class FIFO(object):
                 miss+=1 # Incrementa a variavel de miss
                 frames.append(page) # Adiciona a pagina requerida ao fim da lista
 
-        print("FIFO " + str(miss))
+        print("FIFO " + str(miss)) # Impressao do algoritmo FIFO
