@@ -7,6 +7,7 @@ from fifo import *
 from otm import *
 from lru import *
 
+
 def main():
 
     filename = sys.argv[-1] # Recebe o nome do arquivo do console
