@@ -15,17 +15,23 @@ class OTM(object):
 
         miss = 0 # Contador de miss
 
-        for page in requisitions: # Iteracao na lista de requisicoes
-            candidate = -1 #
-            p = -1
-            if not page in frames: # Verifica se a lista possui a pagina
+        while requisitions: # Executar loop enquanto a lista de requisicoes nao for vazia
+            page = requisitions[0] # Carrega a page como o primeiro elemento da lista de requisicoes
+            best_distance = -1 # Variavel que identifica a maior distancia entre as referencias das paginas
+            candidate = -1 # Candidato a ser removido do frame
+            if page not in frames: # Verifica se o frame contem a pagina
                 if (len(frames) == frame_size): # Verifica se a lista esta cheia
                     for position,value in enumerate(frames): # Iteracao nas paginas alocadas
-                        if (requisitions.index(value) >= candidate): #
-                            candidate = value #
-                            p = position
-                    frames.pop(frames.index(frames[p])) # candidate é removido da lista
+                        try: # Excecao que verifica se a lista possui o elemento que esta no frame
+                            if (requisitions.index(value) >= best_distance): # Verifica qual a distancia dos elementos do frame e maior
+                                best_distance = value # Armazena a maior distancia
+                                candidate = position # Armazena o candidato a ser removido do frame
+                        except ValueError: # Se nao tiver, ela para a iteracao e coloca o elemento para ser retirado do frame
+                            candidate = position # Posicao do frame que nao estao na lista de requisicoes
+                            break # Para a iteracao
+                    frames.pop(candidate) # candidate é removido da lista
                 miss+=1 # Contador de miss incrementado
                 frames.append(page) # Pagina referenciada é adicionada a lista
+            requisitions.pop(0) # Retira o primeiro elemento ja utilizado da lista de requisicoes
 
         print("OTM " + str(miss)) # Impressao do algoritmo FIFO
