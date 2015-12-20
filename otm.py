@@ -15,18 +15,16 @@ class OTM(object):
 
         miss = 0 # Contador de miss
 
-        while requisitions: # Iteracao na lista de requisicoes
-            page = requisitions[0]
-            requisitions.pop(0)
+        for page in requisitions: # Iteracao na lista de requisicoes
             candidate = -1 #
             p = -1
             if not page in frames: # Verifica se a lista possui a pagina
                 if (len(frames) == frame_size): # Verifica se a lista esta cheia
                     for position,value in enumerate(frames): # Iteracao nas paginas alocadas
-                        if (requisitions.index(value) > candidate): #
+                        if (requisitions.index(value) >= candidate): #
                             candidate = value #
                             p = position
-                    frames.pop(p) # candidate é removido da lista
+                    frames.pop(frames.index(frames[p])) # candidate é removido da lista
                 miss+=1 # Contador de miss incrementado
                 frames.append(page) # Pagina referenciada é adicionada a lista
 
